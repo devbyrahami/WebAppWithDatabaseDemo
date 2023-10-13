@@ -1,7 +1,8 @@
 trigger: 'none' # will disable CI builds entirely
 
-pool:  
-  name: local
+pool: 
+  vmImage: 'windows-2019'
+  name: magniuz-MBP
     
 variables:
   BuildConfiguration: release
