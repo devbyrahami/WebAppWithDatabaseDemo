@@ -3,7 +3,7 @@ trigger: 'none' # will disable CI builds entirely
 pool: 
   name: magniuz-MBP
   demands:
-    - magniuz-MBP -equals deploy-05-agent1
+  - agent.name -equals magniuz-MBP
   # vmImage: 'ubuntu-latest'
     
 variables:
