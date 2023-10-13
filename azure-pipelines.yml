@@ -2,7 +2,7 @@ trigger: 'none' # will disable CI builds entirely
 
 pool: 
   vmImage: 'windows-2019'
-  name: magniuz-MBP
+  name: local
     
 variables:
   BuildConfiguration: release
