@@ -1,7 +1,7 @@
 trigger: 'none' # will disable CI builds entirely
 
 pool: 
-  name: magniuz-MBP
+  name: Default
   demands:
   - agent.name -equals magniuz-MBP
   # vmImage: 'ubuntu-latest'
