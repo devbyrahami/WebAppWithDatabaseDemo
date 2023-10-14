@@ -9,6 +9,7 @@ jobs:
   displayName: 'Build Web App'
   # pool:
   #   vmImage: 'windows-2019'
+  
   pool: 
     name: Default
     demands:
@@ -92,6 +93,12 @@ jobs:
 
 - job: Database
   displayName: 'Build Database'
+
+  strategy:
+    matrix:
+      magniuz-MBP:
+        AGENT_NAME: magniuz-MBP
+
   pool:
     name: Default
     demands:
@@ -112,6 +119,12 @@ jobs:
 
 - job: Selenium
   displayName: 'Build UI Tests'
+  
+  strategy:
+    matrix:
+      magniuz-MBP:
+        AGENT_NAME: magniuz-MBP
+        
   pool:
     name: Default
     demands:
