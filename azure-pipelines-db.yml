@@ -21,63 +21,63 @@ jobs:
   
   steps:
   
-  - task: UseDotNet@2
-    displayName: Install .NET 6 sdk
-    inputs:
-      packageType: sdk
-      version: 6.0.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-
-  - task: DotNetCoreCLI@2
-    displayName: Restore
-    inputs:
-      command: restore
-      projects: '**/WebApp.csproj'
-  
-  - powershell: |
-     $paths = Get-ChildItem -include *.csproj -Recurse
-     foreach($pathobject in $paths) 
-     {
-         $path = $pathobject.fullname
-         $doc = New-Object System.Xml.XmlDocument
-         $doc.Load($path)
-         $child = $doc.CreateElement("ProjectGuid")
-         $child.InnerText = [guid]::NewGuid().ToString().ToUpper()
-         $node = $doc.SelectSingleNode("//Project/PropertyGroup")
-         $node.AppendChild($child)
-         $doc.Save($path)
-     }
-    workingDirectory: WebApp
-    displayName: 'PS : Add Project GUID'
-    enabled: false
-  
-  # - task: SonarCloudPrepare@1
-  #   displayName: 'Prepare analysis on SonarCloud'
+  # - task: UseDotNet@2
+  #   displayName: Install .NET 6 sdk
   #   inputs:
-  #     SonarCloud: SonarCloud
-  #     organization: WebAppDbDemo
-  #     projectKey: WebAppDbDemo-1
+  #     packageType: sdk
+  #     version: 6.0.x
+  #     installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  # - task: DotNetCoreCLI@2
+  #   displayName: Restore
+  #   inputs:
+  #     command: restore
+  #     projects: '**/WebApp.csproj'
   
-  - task: DotNetCoreCLI@2
-    displayName: Build
-    inputs:
-      projects: '**/WebApp.csproj'
-      arguments: '--configuration $(BuildConfiguration)'
+  # - powershell: |
+  #    $paths = Get-ChildItem -include *.csproj -Recurse
+  #    foreach($pathobject in $paths) 
+  #    {
+  #        $path = $pathobject.fullname
+  #        $doc = New-Object System.Xml.XmlDocument
+  #        $doc.Load($path)
+  #        $child = $doc.CreateElement("ProjectGuid")
+  #        $child.InnerText = [guid]::NewGuid().ToString().ToUpper()
+  #        $node = $doc.SelectSingleNode("//Project/PropertyGroup")
+  #        $node.AppendChild($child)
+  #        $doc.Save($path)
+  #    }
+  #   workingDirectory: WebApp
+  #   displayName: 'PS : Add Project GUID'
+  #   enabled: false
   
-  - task: DotNetCoreCLI@2
-    displayName: Test
-    inputs:
-      command: test
-      projects: '**/*UnitTest*.csproj'
-      arguments: '--configuration $(BuildConfiguration)'
+  # # - task: SonarCloudPrepare@1
+  # #   displayName: 'Prepare analysis on SonarCloud'
+  # #   inputs:
+  # #     SonarCloud: SonarCloud
+  # #     organization: WebAppDbDemo
+  # #     projectKey: WebAppDbDemo-1
   
-  - task: DotNetCoreCLI@2
-    displayName: Publish
-    inputs:
-      command: publish
-      publishWebProjects: True
-      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-      zipAfterPublish: True
+  # - task: DotNetCoreCLI@2
+  #   displayName: Build
+  #   inputs:
+  #     projects: '**/WebApp.csproj'
+  #     arguments: '--configuration $(BuildConfiguration)'
+  
+  # - task: DotNetCoreCLI@2
+  #   displayName: Test
+  #   inputs:
+  #     command: test
+  #     projects: '**/*UnitTest*.csproj'
+  #     arguments: '--configuration $(BuildConfiguration)'
+  
+  # - task: DotNetCoreCLI@2
+  #   displayName: Publish
+  #   inputs:
+  #     command: publish
+  #     publishWebProjects: True
+  #     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+  #     zipAfterPublish: True
   
   # - task: SonarCloudAnalyze@1
   #   displayName: 'Run Code Analysis'
@@ -85,17 +85,17 @@ jobs:
   # - task: SonarCloudPublish@1
   #   displayName: 'Publish Quality Gate Result'
   
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact (WebApp.zip)'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
+  # - task: PublishBuildArtifacts@1
+  #   displayName: 'Publish Artifact (WebApp.zip)'
+  #   inputs:
+  #     PathtoPublish: '$(build.artifactstagingdirectory)'
 
 - job: Database
   displayName: 'Build Database'
-  # pool:
-  #   name: Default
-  #   demands:
-  #   - agent.name -equals magniuz-MBP
+  pool:
+    name: Default
+    demands:
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
@@ -112,10 +112,10 @@ jobs:
 
 - job: Selenium
   displayName: 'Build UI Tests'
-  # pool:
-  #   name: Default
-  #   demands:
-  #   - agent.name -equals magniuz-MBP
+  pool:
+    name: Default
+    demands:
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
