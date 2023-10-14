@@ -11,7 +11,8 @@ jobs:
   
   strategy:
     matrix:
-      agentName: {'magniuz-MBP'}
+     magniuz-MBP:
+        magniuz-MBP
 
   pool:
     name: Default
