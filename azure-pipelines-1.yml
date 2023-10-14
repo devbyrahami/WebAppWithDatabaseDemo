@@ -99,11 +99,11 @@ jobs:
     # vmImage: 'windows-2019'
 
   steps:
-  - task: MSBuild@1
-    displayName: 'Build solution WebApp.Database.sqlproj'
-    inputs:
-      solution: WebApp.Database/WebApp.Database.sqlproj
-      msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+  # - task: MSBuild@1
+  #   displayName: 'Build solution WebApp.Database.sqlproj'
+  #   inputs:
+  #     solution: WebApp.Database/WebApp.Database.sqlproj
+  #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
   
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact (Dacpac)'
@@ -127,11 +127,11 @@ jobs:
     inputs:
       restoreSolution: WebAppWithDatabase.sln
 
-  - task: MSBuild@1
-    displayName: 'Build project SeleniumUiTests.csproj'
-    inputs:
-      solution: SeleniumUiTests/SeleniumUiTests.csproj
-      msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+  # - task: MSBuild@1
+  #   displayName: 'Build project SeleniumUiTests.csproj'
+  #   inputs:
+  #     solution: SeleniumUiTests/SeleniumUiTests.csproj
+  #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: UI-Test'
