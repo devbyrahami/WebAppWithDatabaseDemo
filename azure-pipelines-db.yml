@@ -17,8 +17,7 @@ jobs:
   variables:
     BuildConfiguration: release
     PoolName: Default
-    DemandsName: 
-    - agent.name -equals magniuz-MBP
+    
   
   steps:
   
@@ -95,7 +94,8 @@ jobs:
   displayName: 'Build Database'
   pool:
     name: $(PoolName)
-    demands:  $(DemandsName)
+    demands: 
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
@@ -114,7 +114,8 @@ jobs:
   displayName: 'Build UI Tests'
   pool:
     name: $(PoolName)
-    demands:  $(DemandsName)
+    demands:
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
@@ -141,7 +142,8 @@ jobs:
   displayName: 'Copy Infrastructure files (ARM)'
   pool:
     name: $(PoolName)
-    demands:  $(DemandsName)
+    demands:
+    - agent.name -equals magniuz-MBP
     # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
