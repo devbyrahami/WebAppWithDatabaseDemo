@@ -94,7 +94,7 @@ jobs:
   displayName: 'Build Database'
   pool:
     name: Default
-    demands: 
+    demands:
     - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
