@@ -9,14 +9,13 @@ jobs:
 - job: WebApp
   displayName: 'Build Web App'
   
-  strategy:
-    matrix:
-     magniuz-MBP
+  # strategy:
+  #   matrix:
 
   pool:
     name: Default
     demands:
-    - agent.name -equals ${{ matrix.agentName }}
+    - agent.name -equals magniuz-MBP
   variables:
     BuildConfiguration: release
   
@@ -96,7 +95,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - agent.name -equals ${{ matrix.agentName }}
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
@@ -116,7 +115,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - agent.name -equals ${{ matrix.agentName }}
+    - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
 
   steps:
@@ -144,7 +143,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - agent.name -equals ${{ matrix.agentName }}
+    - agent.name -equals magniuz-MBP
     # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
