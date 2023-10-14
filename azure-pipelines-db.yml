@@ -19,7 +19,7 @@ jobs:
     PoolName: Default
     
   
-  steps:
+  # steps:
   
   # - task: UseDotNet@2
   #   displayName: Install .NET 6 sdk
