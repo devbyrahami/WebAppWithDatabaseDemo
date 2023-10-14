@@ -5,10 +5,18 @@ pr: none
 # - releases/*
 
 jobs:
+
 - job: WebApp
   displayName: 'Build Web App'
+  
+  strategy:
+    matrix:
+      agentName: magniuz-MBP
+
   pool:
-    vmImage: 'windows-2019'
+    name: Default
+    demands:
+    - agent.name -equals ${{ matrix.agentName }}
   variables:
     BuildConfiguration: release
   
@@ -86,7 +94,10 @@ jobs:
 - job: Database
   displayName: 'Build Database'
   pool:
-    vmImage: 'windows-2019'
+    name: Default
+    demands:
+    - agent.name -equals ${{ matrix.agentName }}
+    # vmImage: 'windows-2019'
 
   steps:
   - task: MSBuild@1
@@ -103,7 +114,10 @@ jobs:
 - job: Selenium
   displayName: 'Build UI Tests'
   pool:
-    vmImage: 'windows-2019'
+    name: Default
+    demands:
+    - agent.name -equals ${{ matrix.agentName }}
+    # vmImage: 'windows-2019'
 
   steps:
   - task: NuGetToolInstaller@0
@@ -128,7 +142,10 @@ jobs:
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
   pool:
-    vmImage: 'ubuntu-latest'
+    name: Default
+    demands:
+    - agent.name -equals ${{ matrix.agentName }}
+    # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: ARM templates'
