@@ -13,8 +13,11 @@ jobs:
     name: Default
     demands:
     - agent.name -equals magniuz-MBP
+
   variables:
     BuildConfiguration: release
+    PoolName: Default
+    DemandsName: - agent.name -equals magniuz-MBP
   
   steps:
   
@@ -90,7 +93,9 @@ jobs:
 - job: Database
   displayName: 'Build Database'
   pool:
-    vmImage: 'windows-2019'
+    name: $(PoolName)
+    demands:  $(DemandsName)
+    # vmImage: 'windows-2019'
 
   steps:
   - task: MSBuild@1
@@ -107,7 +112,9 @@ jobs:
 - job: Selenium
   displayName: 'Build UI Tests'
   pool:
-    vmImage: 'windows-2019'
+    name: $(PoolName)
+    demands:  $(DemandsName)
+    # vmImage: 'windows-2019'
 
   steps:
   - task: NuGetToolInstaller@0
@@ -132,7 +139,9 @@ jobs:
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
   pool:
-    vmImage: 'ubuntu-latest'
+    name: $(PoolName)
+    demands:  $(DemandsName)
+    # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: ARM templates'
