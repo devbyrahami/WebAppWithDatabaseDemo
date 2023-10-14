@@ -17,7 +17,8 @@ jobs:
   variables:
     BuildConfiguration: release
     PoolName: Default
-    DemandsName: - agent.name -equals magniuz-MBP
+    DemandsName: 
+    - agent.name -equals magniuz-MBP
   
   steps:
   
