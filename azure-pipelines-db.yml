@@ -93,7 +93,7 @@ jobs:
 - job: Database
   displayName: 'Build Database'
   pool:
-    name: $(PoolName)
+    name: Default
     demands: 
     - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
@@ -113,7 +113,7 @@ jobs:
 - job: Selenium
   displayName: 'Build UI Tests'
   pool:
-    name: $(PoolName)
+    name: Default
     demands:
     - agent.name -equals magniuz-MBP
     # vmImage: 'windows-2019'
@@ -141,7 +141,7 @@ jobs:
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
   pool:
-    name: $(PoolName)
+    name: Default
     demands:
     - agent.name -equals magniuz-MBP
     # vmImage: 'ubuntu-latest'
