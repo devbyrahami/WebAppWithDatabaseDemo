@@ -18,7 +18,7 @@ jobs:
   pool: 
     name: Default
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals $(AGENT_NAME)
 
   variables:
     BuildConfiguration: release
@@ -107,7 +107,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals $(AGENT_NAME)
     # vmImage: 'windows-2019'
 
   steps:
@@ -133,7 +133,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals $(AGENT_NAME)
     # vmImage: 'windows-2019'
 
   steps:
