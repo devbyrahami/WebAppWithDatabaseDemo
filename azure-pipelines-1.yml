@@ -111,7 +111,7 @@ jobs:
   #   inputs:
   #     solution: WebApp.Database/WebApp.Database.sqlproj
   #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
-steps:
+  steps:
   # - script: dotnet build WebApp.Database/WebApp.Database.sqlproj -c Release --output $(Build.ArtifactStagingDirectory)
   #   displayName: 'Build solution WebApp.Database.sqlproj'
   
