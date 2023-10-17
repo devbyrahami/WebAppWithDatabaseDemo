@@ -94,9 +94,9 @@ jobs:
 - job: Database
   displayName: 'Build Database'
   pool:
-    name: Default
+    name: MyUbuntuAgentPool
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals myAzureBuildAgent
     # vmImage: 'windows-2019'
 
   steps:
@@ -114,9 +114,9 @@ jobs:
 - job: Selenium
   displayName: 'Build UI Tests'
   pool:
-    name: Default
+    name: MyUbuntuAgentPool
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals myAzureBuildAgent
     # vmImage: 'windows-2019'
 
   steps:
@@ -142,9 +142,9 @@ jobs:
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
   pool:
-    name: Default
+    name: MyUbuntuAgentPool
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals myAzureBuildAgent
     # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
