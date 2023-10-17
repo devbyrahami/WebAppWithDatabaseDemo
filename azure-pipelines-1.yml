@@ -94,6 +94,7 @@ jobs:
 - job: Database
   displayName: 'Build Database'
   pool:
+    vmImage: 'ubuntu-latest' # Choose a Linux VM image
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
