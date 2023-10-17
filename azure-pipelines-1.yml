@@ -13,9 +13,10 @@ jobs:
   #   matrix:
 
   pool:
-    name: Default
+    name: MyUbuntuAgentPool
     demands:
-    - agent.name -equals magniuz-MBP
+    - agent.name -equals myAzureBuildAgent
+    # - agent.name -equals magniuz-MBP
   variables:
     BuildConfiguration: release
   
