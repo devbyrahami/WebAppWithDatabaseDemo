@@ -17,6 +17,8 @@ jobs:
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
+    - msbuild
+    - Agent.Version -gtVersion 2.163.1
     # - agent.name -equals magniuz-MBP
   variables:
     BuildConfiguration: release
@@ -99,6 +101,8 @@ jobs:
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
+    - msbuild
+    - Agent.Version -gtVersion 2.163.1
     # vmImage: 'windows-2019'
 
   steps:
@@ -120,6 +124,8 @@ jobs:
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
+    - msbuild
+    - Agent.Version -gtVersion 2.163.1
     # vmImage: 'windows-2019'
 
   steps:
@@ -148,6 +154,8 @@ jobs:
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
+    - msbuild
+    - Agent.Version -gtVersion 2.163.1
     # vmImage: 'ubuntu-latest'
   steps:
   - task: PublishBuildArtifacts@1
