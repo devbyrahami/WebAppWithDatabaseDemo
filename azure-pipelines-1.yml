@@ -105,25 +105,29 @@ jobs:
     # - Agent.Version -gtVersion 2.163.1
     # vmImage: 'windows-2019'
 
-  steps:
-  - task: MSBuild@1
+  # steps:
+  # - task: MSBuild@1
+  #   displayName: 'Build solution WebApp.Database.sqlproj'
+  #   inputs:
+  #     solution: WebApp.Database/WebApp.Database.sqlproj
+  #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+
+  - script: dotnet build WebApp.Database/WebApp.Database.sqlproj -c Release --output $(Build.ArtifactStagingDirectory)
     displayName: 'Build solution WebApp.Database.sqlproj'
-    inputs:
-      solution: WebApp.Database/WebApp.Database.sqlproj
-      msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+
   
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact (Dacpac)'
     inputs:
       ArtifactName: dacpac
 
-- job: Selenium
-  displayName: 'Build UI Tests'
-  pool:
-    vmImage: 'ubuntu-latest' # Choose a Linux VM image
-    name: MyUbuntuAgentPool
-    demands:
-    - agent.name -equals myAzureBuildAgent
+# - job: Selenium
+#   displayName: 'Build UI Tests'
+#   pool:
+#     vmImage: 'ubuntu-latest' # Choose a Linux VM image
+#     name: MyUbuntuAgentPool
+#     demands:
+#     - agent.name -equals myAzureBuildAgent
     # - msbuild
     # - Agent.Version -gtVersion 2.163.1
     # vmImage: 'windows-2019'
@@ -137,16 +141,16 @@ jobs:
     inputs:
       restoreSolution: WebAppWithDatabase.sln
 
-  - task: MSBuild@1
-    displayName: 'Build project SeleniumUiTests.csproj'
-    inputs:
-      solution: SeleniumUiTests/SeleniumUiTests.csproj
-      msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+  # - task: MSBuild@1
+  #   displayName: 'Build project SeleniumUiTests.csproj'
+  #   inputs:
+  #     solution: SeleniumUiTests/SeleniumUiTests.csproj
+  #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: UI-Test'
-    inputs:
-      ArtifactName: 'UI-Test'
+  # - task: PublishBuildArtifacts@1
+  #   displayName: 'Publish Artifact: UI-Test'
+  #   inputs:
+  #     ArtifactName: 'UI-Test'
 
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
