@@ -114,11 +114,10 @@ jobs:
 steps:
   # - script: dotnet build WebApp.Database/WebApp.Database.sqlproj -c Release --output $(Build.ArtifactStagingDirectory)
   #   displayName: 'Build solution WebApp.Database.sqlproj'
+  
   - script: dotnet build WebApp.Database/WebApp.Database.sqlproj --configuration Release --output $(Build.ArtifactStagingDirectory)
     displayName: 'Build WebApp.Database.sqlproj'
 
-
-  
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact (Dacpac)'
     inputs:
@@ -144,16 +143,16 @@ steps:
     inputs:
       restoreSolution: WebAppWithDatabase.sln
 
-  - task: MSBuild@1
-    displayName: 'Build project SeleniumUiTests.csproj'
-    inputs:
-      solution: SeleniumUiTests/SeleniumUiTests.csproj
-      msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
+  # - task: MSBuild@1
+  #   displayName: 'Build project SeleniumUiTests.csproj'
+  #   inputs:
+  #     solution: SeleniumUiTests/SeleniumUiTests.csproj
+  #     msbuildArguments: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: UI-Test'
-    inputs:
-      ArtifactName: 'UI-Test'
+  # - task: PublishBuildArtifacts@1
+  #   displayName: 'Publish Artifact: UI-Test'
+  #   inputs:
+  #     ArtifactName: 'UI-Test'
 
 - job: Infrastructure
   displayName: 'Copy Infrastructure files (ARM)'
