@@ -13,6 +13,7 @@ jobs:
   #   matrix:
 
   pool:
+    vmImage: 'ubuntu-latest' # Choose a Linux VM image
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
@@ -115,6 +116,7 @@ jobs:
 - job: Selenium
   displayName: 'Build UI Tests'
   pool:
+    vmImage: 'ubuntu-latest' # Choose a Linux VM image
     name: MyUbuntuAgentPool
     demands:
     - agent.name -equals myAzureBuildAgent
